@@ -1,5 +1,7 @@
 # SKIZA POSTBACK SERVER
 
+A blog post is available [here](https://medium.com/@itscosmas/react-spring-webflux-server-sent-events-2d56bfd0decd)
+
 ## Motivation
 
 - A number of scenarios with third party integrations require the need for a web hook to receive the response.
