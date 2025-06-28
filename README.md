@@ -71,7 +71,7 @@ Strict Mode will mount, unmount and mount again the Table Component, and therefo
 To receive postbacks on your local setup, you can expose the postback endpoint via ngrok
 1. Create an account at [ngrok](https://dashboard.ngrok.com/)
 
-2. User your favorite 21 JDK
+2. On the backend directory shell `cd backend` use your favorite 21 JDK
 `sdk use java 21-librca`
 
 3. Ensure docker is running and build a docker image using spring boot cloud native build pack
