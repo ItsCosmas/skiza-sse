@@ -1,0 +1,8 @@
+# text editor
+.vscode/
+
+# jetbrains IDEs
+.idea/
+
+# misc
+.DS_Store
