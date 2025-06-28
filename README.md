@@ -66,5 +66,38 @@ curl --location 'localhost:8080/api/postbacks' \
 You should not perform the browser test using vite dev server `http://localhost:5173/` because of how React `StrictMode` behaves in development. 
 Strict Mode will mount, unmount and mount again the Table Component, and therefore connection to SSE will be broken.
 
-## Expose Via NGROK
-To receive postbacks on your local setup, you can expose the postback endpoint via NGROK
+## Expose to the Internet Via ngrok
+
+To receive postbacks on your local setup, you can expose the postback endpoint via ngrok
+1. Create an account at [ngrok](https://dashboard.ngrok.com/)
+
+2. User your favorite 21 JDK
+`sdk use java 21-librca`
+
+3. Build a docker image using spring boot cloud native build pack
+`./mvnw spring-boot:build-image`
+
+4. Create an `.env` file at project root `cp .env.example .env`
+   - Confirm you are on project root/directory you cloned into
+    ```shell
+    ls
+    # README.md       backend         compose.yml     demo            frontend
+    ```
+   - Create an `.env` file
+   ```shell
+      cp .env.example .env
+    ```
+
+5. Get your NGROK AUTH TOKEN from [ngrok Dashboard](https://dashboard.ngrok.com/get-started/your-authtoken)
+
+   ![A Screenshot of ngrok Dashboard on Browser](https://github.com/ItsCosmas/skiza-sse/blob/main/demo/ngrok-token.png) <br />
+
+6. Add it to `.env` file `NGROK_AUTH_TOKEN='YOUR_NGROK_AUTH_TOKEN'`
+
+7. Run Docker Compose `docker compose up`
+
+8. Your ngrok endpoint can be seen at the dashboard
+
+   ![A Screenshot of ngrok Dashboard on Browser](https://github.com/ItsCosmas/skiza-sse/blob/main/demo/ngrok-token.png) <br />
+
+9. Back to your postman replace `localhost:8080` with the ngrok endpoint, you can event use it on partner sandbox as its accesible on the internet.
