@@ -6,3 +6,7 @@
 
 # misc
 .DS_Store
+target
+
+# env's
+.env
