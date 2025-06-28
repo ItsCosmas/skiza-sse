@@ -100,4 +100,4 @@ To receive postbacks on your local setup, you can expose the postback endpoint v
 
    ![A Screenshot of ngrok Dashboard on Browser](https://github.com/ItsCosmas/skiza-sse/blob/main/demo/ngrok-token.png) <br />
 
-9. Back to your postman replace `localhost:8080` with the ngrok endpoint, you can even use it on partner sandbox as its accesible on the internet.
+9. Back to your postman or [Table.tsx](https://github.com/ItsCosmas/skiza-sse/blob/main/frontend/src/components/table/Table.tsx) replace `localhost:8080` with the ngrok endpoint, you can even use it on partner sandbox as its accesible on the internet.
