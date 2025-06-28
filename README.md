@@ -74,7 +74,7 @@ To receive postbacks on your local setup, you can expose the postback endpoint v
 2. User your favorite 21 JDK
 `sdk use java 21-librca`
 
-3. Build a docker image using spring boot cloud native build pack
+3. Ensure docker is running and build a docker image using spring boot cloud native build pack
 `./mvnw spring-boot:build-image`
 
 4. Create an `.env` file at project root `cp .env.example .env`
