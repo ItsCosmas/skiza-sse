@@ -1,4 +1,4 @@
-# SKIZA POSTBACK SERVER
+# Skiza Postback Server
 
 A blog post is available [here](https://medium.com/@itscosmas/react-spring-webflux-server-sent-events-2d56bfd0decd)
 
