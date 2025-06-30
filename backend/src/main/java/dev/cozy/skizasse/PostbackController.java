@@ -23,14 +23,21 @@ public class PostbackController {
     private final Sinks.Many<PostbackEvent> sink = Sinks.many().replay().limit(3);
 
     @GetMapping(path = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<ServerSentEvent<?>> streamPostbacks(@RequestHeader(name = "Last-Event-ID", required = false) String lastEventId, ServerHttpRequest request) {
+    public Flux<ServerSentEvent<?>> streamPostbacks(@RequestHeader(name = "Last-Event-ID") Optional<String> lastEventId, ServerHttpRequest request) {
         String sourceIp = Optional.ofNullable(request.getRemoteAddress())
                 .map(addr -> addr.getAddress().getHostAddress())
                 .orElse("unknown");
 
         log.info("New SSE connection from IP: {}", sourceIp);
 
-        long resumeFrom = parseLastEventId(lastEventId);
+        long resumeFrom = lastEventId.map(id -> {
+            try {
+                return Long.parseLong(id);
+            } catch (NumberFormatException e) {
+                return 0L;
+            }
+        }).orElse(0L);
+
         AtomicLong counter = new AtomicLong(resumeFrom + 1); // Local per-connection counter
 
         // Stream real events
@@ -43,7 +50,7 @@ public class PostbackController {
 
         // Heartbeat every 15 seconds
         Flux<ServerSentEvent<?>> heartbeats = Flux.interval(Duration.ofSeconds(15))
-                .map(i -> ServerSentEvent.<Object>builder()
+                .map(i -> ServerSentEvent.builder()
                         .comment("heartbeat")
                         .build());
 
@@ -65,18 +72,6 @@ public class PostbackController {
         }
 
         return ResponseEntity.accepted().body("Callback received");
-    }
-
-    private long parseLastEventId(String lastEventId) {
-        return Optional.ofNullable(lastEventId)
-                .map(id -> {
-                    try {
-                        return Long.parseLong(id);
-                    } catch (NumberFormatException e) {
-                        return 0L;
-                    }
-                })
-                .orElse(0L);
     }
 
 }
