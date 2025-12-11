@@ -33,7 +33,7 @@ const Table = () => {
 
         eventSource.addEventListener("postback", event => {
             console.log("Received SSE:", event.data);
-            setMessages((prev) => [...prev, event.data]);
+            setMessages((prev) => [event.data, ...prev]);
         });
 
         eventSource.onerror = error => {
