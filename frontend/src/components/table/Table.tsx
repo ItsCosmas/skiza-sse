@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import Modal from "components/modal/Modal";
 
-const SSE_URL = "http://localhost:8080/api/postbacks/stream";
-const eventSource = new EventSource(SSE_URL);
-
 const Table = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
@@ -30,6 +27,13 @@ const Table = () => {
     }
 
     useEffect(() => {
+
+        // Get backend base URL from Vite env
+        const backendBaseUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8080";
+        const SSE_URL = `${backendBaseUrl}/api/postbacks/stream`;
+
+        console.log("Connecting to SSE:", SSE_URL);
+        const eventSource = new EventSource(SSE_URL);
 
         eventSource.addEventListener("postback", event => {
             console.log("Received SSE:", event.data);
