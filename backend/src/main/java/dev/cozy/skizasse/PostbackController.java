@@ -50,7 +50,7 @@ public class PostbackController {
 
         // Heartbeat every 15 seconds
         Flux<ServerSentEvent<?>> heartbeats = Flux.interval(Duration.ofSeconds(15))
-                .map(i -> ServerSentEvent.builder()
+                .map(_ -> ServerSentEvent.builder()
                         .comment("heartbeat")
                         .build());
 
