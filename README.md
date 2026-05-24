@@ -75,7 +75,7 @@ Strict Mode will mount, unmount and mount again the Table Component, and therefo
 To receive postbacks on your local setup, you can expose the postback endpoint via ngrok
 1. Create an account at [ngrok](https://dashboard.ngrok.com/)
 
-2. On the backend directory shell `cd backend` use your favorite 21 JDK
+2. On the backend directory shell `cd backend` use your favorite 25 JDK
 `sdk use java 25-librca`
 
 3. Ensure docker is running and build a docker image using spring boot cloud native build pack
@@ -102,7 +102,7 @@ To receive postbacks on your local setup, you can expose the postback endpoint v
 
 8. Your ngrok endpoint can be seen at the dashboard
 
-   ![A Screenshot of ngrok Dashboard on Browser](https://github.com/ItsCosmas/skiza-sse/blob/main/demo/ngrok-token.png) <br />
+   ![A Screenshot of ngrok Dashboard on Browser](https://github.com/ItsCosmas/skiza-sse/blob/main/demo/ngrok-endpoint.png) <br />
 
 9. Back to your postman or [Table.tsx](https://github.com/ItsCosmas/skiza-sse/blob/main/frontend/src/components/table/Table.tsx) replace `localhost:8080` with the ngrok endpoint, you can even use it on partner sandbox as its accesible on the internet.
 
